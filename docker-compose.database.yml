@@ -1,0 +1,22 @@
+version: '3.9'
+
+volumes:
+  postgres-hotels-data:
+
+services:
+  hotels-db:
+    container_name: hotels-db
+    image: postgres:11-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres-hotels-data:/var/lib/postgresql/data
+    networks:
+      - hotels-net
+networks:
+  hotels-net:
+    
+      
