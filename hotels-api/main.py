@@ -1,3 +1,5 @@
+import uuid
+
 from fastapi.params import Query
 from starlette import status
 from starlette.middleware.cors import CORSMiddleware
@@ -40,7 +42,6 @@ def get_hotels_scrape(name: str = Query(None)):
     data = scrape_hotels(name)
     return data
 
-
 @app.post("/api/hotels/")
 async def create_hotel(hotel: Hotel, db: Session = Depends(get_db)):
     return crud.create_hotel(db=db, hotel=hotel)
@@ -55,6 +56,22 @@ async def get_hotels(db: Session = Depends(get_db)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e)
     )
+
+@app.get("/api/hotels/{hotel_id}")
+async def get_hotel_by_id(hotel_id: uuid.UUID, db: Session = Depends(get_db)):
+    try:
+        hotel = crud.get_hotel_by_id(db, hotel_id)
+        if hotel is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Hotel not found"
+            )
+        return hotel
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=str(e)
+        )
 
 
 if __name__ == "__main__":

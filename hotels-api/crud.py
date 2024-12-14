@@ -73,3 +73,28 @@ def get_hotels(db: Session):
         return result
     except Exception as e:
         raise e
+
+def get_hotel_by_id(db: Session, hotel_id: uuid.UUID):
+    try:
+        hotel = db.query(models.Hotel).options(
+            joinedload(models.Hotel.image_srcs),
+            joinedload(models.Hotel.amenities)
+        ).filter(models.Hotel.id == hotel_id).first()
+
+        if hotel is None:
+            return None
+
+        hotel_data = {
+            "id": hotel.id,
+            "name": hotel.name,
+            "location": hotel.location,
+            "description": hotel.description,
+            "review_mark": hotel.review_mark,
+            "comments_count": hotel.comments_count,
+            "average_price": hotel.average_price,
+            "image_srcs": [image.src for image in hotel.image_srcs],
+            "amenities": [amenity.name for amenity in hotel.amenities]
+        }
+        return hotel_data
+    except Exception as e:
+        raise e
