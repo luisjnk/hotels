@@ -1,0 +1,21 @@
+.hotel-details-page {
+
+    max-width: 112rem;
+    margin-inline: auto;
+    box-sizing: border-box;
+    padding-inline: 1.25rem;
+
+
+    @media (min-width: 37.5em) {
+        .hotel-details-page {
+            padding-inline: 2rem;
+        }
+    }
+
+    @media (min-width: 56.25em) {
+        .hotel-details-page {
+            padding-inline: 3rem;
+        }
+    }
+}
+

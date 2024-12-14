@@ -23,17 +23,6 @@ export const fetchHotels = async () => {
   }
 };
 
-export const searchHotelsByName = async (name: string) => {
-  try {
-    const response = await axiosInstance.get(`/hotels/search`, {
-      params: { name },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error searching hotels:', error);
-    throw error;
-  }
-};
 
 export const postHotel = async (hotel: Hotel) => {
   try {
@@ -41,6 +30,16 @@ export const postHotel = async (hotel: Hotel) => {
     return response.data;
   } catch (error) {
     console.error('Error posting hotel:', error);
+    throw error;
+  }
+};
+
+export const fetchHotelById = async (id: string): Promise<Hotel> => {
+  try {
+    const response = await axiosInstance.get(`/hotels/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching hotel with id ${id}:`, error);
     throw error;
   }
 };

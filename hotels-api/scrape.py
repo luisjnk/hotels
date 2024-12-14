@@ -23,6 +23,12 @@ def scrape_hotels(name: str):
             return f'{base_locator}//{nested}'
         return base_locator
 
+    def get_amenities_locator(page, default=""):
+        try:
+            return page.locator(create_locator(value="property-highlights"))
+        except:
+             return default
+
     with sync_playwright() as p:
         page_url = f"https://www.booking.com/searchresults.es.html?ss={name.replace(' ', '+')}"
         browser = p.chromium.launch(headless=False)
@@ -36,13 +42,15 @@ def scrape_hotels(name: str):
 
             image_elements = page.locator(create_locator(value="GalleryDesktop-wrapper", nested="img"))
             image_srcs = [img.get_attribute('src') for img in image_elements.element_handles()]
+            amenities_locator = get_amenities_locator(page)
+            amenities_text = safe_get_text(amenities_locator)
             hotel = {
                     "name": safe_get_text(page.locator("h2")),
                     "location": safe_get_text(page.locator(create_locator(value="PropertyHeaderAddressDesktop-wrapper"))).split("\n")[0],
                     "description": safe_get_text(page.locator(create_locator(attribute="class", value="hp_desc_main_content"))),
                     "review_mark": safe_get_text(page.locator(create_locator( value="review-score-component"))).split("\n")[1] if page.locator(create_locator( value="review-score-component")) else "",
                     "comments_count": extract_numbers(safe_get_text(page.locator(create_locator( value="review-score-component"))).split("\n")[3]) if page.locator(create_locator( value="review-score-component")) else [],
-                    "amenities": safe_get_text(page.locator(create_locator( value="property-highlights"))).split("\n"),
+                    "amenities": amenities_text.split("\n") if amenities_text != "" else "",
                     "image_srcs": image_srcs,
                     "average_price": 0
             }

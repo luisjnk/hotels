@@ -50,7 +50,7 @@ async def create_hotel(hotel: Hotel, db: Session = Depends(get_db)):
 @app.get("/api/hotels/")
 async def get_hotels(db: Session = Depends(get_db)):
     try:
-        return get_hotels(db)
+        return crud.get_hotels(db)
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
