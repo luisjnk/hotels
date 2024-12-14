@@ -6,8 +6,12 @@ import {useNavigate} from "react-router-dom";
 function App() {
   const navigate = useNavigate();
 
-  const handleSarchHotelToScrape = () => {
+  const handleSearchHotelToScrape = () => {
     navigate('/hotel-search');
+  }
+
+  const handleSearchHotels = () => {
+    navigate('/hotels');
   }
   return (
     <div className="App">
@@ -15,8 +19,8 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <Button message={"Search hotel to scrape"} handleAction={handleSarchHotelToScrape} buttonStyle={ButtonType.Primary} />
-        <Button message={"List of Hotels"} handleAction={handleSarchHotelToScrape} buttonStyle={ButtonType.Secondary} />
+        <Button message={"Search hotel to scrape"} handleAction={handleSearchHotelToScrape} buttonStyle={ButtonType.Primary} />
+        <Button message={"List of Hotels"} handleAction={handleSearchHotels} buttonStyle={ButtonType.Secondary} />
       </header>
     </div>
   );
