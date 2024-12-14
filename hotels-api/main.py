@@ -49,21 +49,7 @@ async def create_hotel(hotel: Hotel, db: Session = Depends(get_db)):
 @app.get("/api/hotels/")
 async def get_hotels(db: Session = Depends(get_db)):
     try:
-        hotels = db.query(models.Hotel).options(joinedload(models.Hotel.image_srcs)).all()
-        result = []
-        for hotel in hotels:
-            hotel_data = {
-                "id": hotel.id,
-                "name": hotel.name,
-                "location": hotel.location,
-                "description": hotel.description,
-                "review_mark": hotel.review_mark,
-                "comments_count": hotel.comments_count,
-                "average_price": hotel.average_price,
-                "image_srcs": [image.src for image in hotel.image_srcs]
-            }
-            result.append(hotel_data)
-        return result
+        return get_hotels(db)
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

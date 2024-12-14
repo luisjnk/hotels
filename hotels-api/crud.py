@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 import models
 import schemas
@@ -52,4 +52,24 @@ def create_hotel(db: Session, hotel: schemas.Hotel):
         return db_hotel
     except Exception as e:
         db.rollback()
+        raise e
+
+def get_hotels(db: Session):
+    try:
+        hotels = db.query(models.Hotel).options(joinedload(models.Hotel.image_srcs)).all()
+        result = []
+        for hotel in hotels:
+            hotel_data = {
+                "id": hotel.id,
+                "name": hotel.name,
+                "location": hotel.location,
+                "description": hotel.description,
+                "review_mark": hotel.review_mark,
+                "comments_count": hotel.comments_count,
+                "average_price": hotel.average_price,
+                "image_srcs": [image.src for image in hotel.image_srcs]
+            }
+            result.append(hotel_data)
+        return result
+    except Exception as e:
         raise e
