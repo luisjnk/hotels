@@ -4,7 +4,7 @@ from typing import List
 from playwright.sync_api import sync_playwright
 
 #   read me playwright should be installed playwright install
-def scrape_hotels():
+def scrape_hotels(name: str):
     def safe_get_text(locator, default=""):
         try:
             return locator.first.inner_text()
@@ -24,7 +24,7 @@ def scrape_hotels():
         return base_locator
 
     with sync_playwright() as p:
-        page_url = "https://www.booking.com/searchresults.es.html?ss=catalonia+barcelona+plaza"
+        page_url = f"https://www.booking.com/searchresults.es.html?ss={name.replace(' ', '+')}"
         browser = p.chromium.launch(headless=False)
         page = browser.new_page()
         page.goto(page_url, timeout=10000)
@@ -53,8 +53,8 @@ def scrape_hotels():
 
     return hotel
 
-def extract_numbers(text: str) -> List[float]:
+def extract_numbers(text: str) -> int:
     # Regular expression to match numbers with optional decimal points
     pattern = r'\d+\.\d+|\d+'
     # Convert matches to float
-    return re.findall(pattern, text)[0]
+    return int(re.findall(pattern, text)[0].replace(".", ""))

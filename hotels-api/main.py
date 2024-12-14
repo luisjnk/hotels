@@ -1,4 +1,6 @@
+from fastapi.params import Query
 from starlette import status
+from starlette.middleware.cors import CORSMiddleware
 
 import crud
 import models
@@ -10,13 +12,33 @@ from schemas import Hotel
 from scrape import  scrape_hotels
 
 app = FastAPI()
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 models.Base.metadata.create_all(bind=engine)
 
 #Add Exception to the get_hotels_scrape
 @app.get("/api/hotels/scrape")
-def get_hotels_scrape():
-        data =  scrape_hotels()
-        return data
+def get_hotels_scrape(name: str = Query(None)):
+    if not name:
+        return {
+            "name": "",
+            "location": "",
+            "description": "",
+            "review_mark": "",
+            "comments_count": 0,
+            "amenities": [],
+            "image_srcs": [],
+            "average_price": 0
+        }
+    data = scrape_hotels(name)
+    return data
 
 #Add Exception to create_hotel
 @app.post("/api/hotels/")

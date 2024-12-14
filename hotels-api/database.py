@@ -4,10 +4,10 @@ from sqlalchemy.ext.declarative import declarative_base
 
 #Create Function to receive the env variable for docker and then connect to database
 
-#URL_DATABASE_LOCAL = "postgresql://postgres:postgres@localhost:5432/postgres"
-URL_DATABASE = "postgresql+psycopg2://postgres:postgres@db:5432/postgres"
+URL_DATABASE_LOCAL = "postgresql://postgres:postgres@localhost:5432/postgres"
+#URL_DATABASE = "postgresql+psycopg2://postgres:postgres@db:5432/postgres"
 
-engine = create_engine(URL_DATABASE)
+engine = create_engine(URL_DATABASE_LOCAL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 

@@ -1,0 +1,145 @@
+hnf-content-container {
+    max-width: 112rem;
+    margin-inline: auto;
+    box-sizing: border-box;
+    padding-inline: 1.25rem;
+}
+
+@media (min-width: 37.5em) {
+    .hnf-content-container {
+        padding-inline: 2rem;
+    }
+}
+
+@media (min-width: 56.25em) {
+    .hnf-content-container {
+        padding-inline: 3rem;
+    }
+}
+
+.hnf-header__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+@media (min-width: 700px) {
+    .hnf-header__container {
+        flex-wrap: nowrap;
+        padding-bottom: 0;
+    }
+}
+
+@media (min-width: 56.25em) {
+    .hnf-header__container {
+        height: 90px;
+    }
+}
+
+.hnf-header__logo {
+    flex-shrink: 0;
+    order: 2;
+    display: block;
+    padding-top: 1.375rem;
+    padding-bottom: 1.375rem;
+}
+
+@media (min-width: 56.25em) {
+    .hnf-header__logo {
+        padding-top: .9375rem;
+        padding-bottom: .9375rem;
+    }
+}
+
+.hnf-header__logo a {
+    display: block;
+}
+
+.hnf-header__logo img {
+    display: block;
+    height: 36px;
+}
+
+.hnf-header__search {
+    order: 7;
+    min-width: 100%;
+    z-index: 200;
+}
+
+@media (min-width: 700px) {
+    .hnf-header__search {
+        margin-inline-start: 2.5rem;
+        order: 4;
+        min-width: auto;
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 75em) {
+    .hnf-header__search {
+        margin-inline-start: 2rem;
+        margin-inline-end: auto;
+        max-width: 600px;
+    }
+}
+
+.hnf-header__icons {
+    display: flex;
+    flex-direction: row;
+    order: 5;
+    margin-inline: auto -0.625rem;
+    align-items: center;
+}
+
+@media (min-width: 700px) {
+    .hnf-header__icons {
+        margin-inline-start: 1rem;
+    }
+
+    .hnf-header__icons li + li {
+        margin-inline-start: .5rem;
+    }
+}
+
+.hnf-header__icons li {
+    list-style-type: none;
+}
+
+.hnf-header__icons li.hidden {
+    display: none;
+}
+
+.hnf-header__icons > .hnf-header__hamburger {
+    display: block;
+}
+
+@media (min-width: 75em) {
+    .hnf-header__icons > .hnf-header__hamburger {
+        display: none;
+    }
+}
+
+.search-field__input {
+    box-shadow: none;
+    display: block;
+    width: 100%;
+    height: 3.125rem;
+    padding: .5rem;
+    padding-inline: 3.25rem 3.375rem;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid transparent;
+    border-radius: 50em;
+    outline: 0;
+    box-shadow: none;
+    transition: background-color .2s;
+}
