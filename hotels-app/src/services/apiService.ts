@@ -1,7 +1,7 @@
 import axiosInstance from './axiosInstance';
 import Hotel from "../types/Hotel";
 
-export const fetchHotelsByScrape = async (name: string) => {
+export const fetchHotelsByScrape = async (name: string): Promise<Hotel> => {
   try {
     const response = await axiosInstance.get('/hotels/scrape', {
       params: { name },
@@ -13,23 +13,13 @@ export const fetchHotelsByScrape = async (name: string) => {
   }
 };
 
-export const fetchHotels = async () => {
+
+export const fetchHotels = async (): Promise<Hotel[]> => {
   try {
-    const response = await axiosInstance.get('/hotels');
+    const response = await axiosInstance.get('/hotels/');
     return response.data;
   } catch (error) {
     console.error('Error fetching hotels:', error);
-    throw error;
-  }
-};
-
-
-export const postHotel = async (hotel: Hotel) => {
-  try {
-    const response = await axiosInstance.post('/hotels/', hotel);
-    return response.data;
-  } catch (error) {
-    console.error('Error posting hotel:', error);
     throw error;
   }
 };
@@ -40,6 +30,16 @@ export const fetchHotelById = async (id: string): Promise<Hotel> => {
     return response.data;
   } catch (error) {
     console.error(`Error fetching hotel with id ${id}:`, error);
+    throw error;
+  }
+};
+
+export const postHotel = async (hotel: Hotel) => {
+  try {
+    const response = await axiosInstance.post('/hotels/', hotel);
+    return response.data;
+  } catch (error) {
+    console.error('Error posting hotel:', error);
     throw error;
   }
 };

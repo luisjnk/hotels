@@ -13,7 +13,7 @@ function NavBar({ handleSearchByName, disabled }: NavBarProps) {
   return (
     <div className="hnf-content-container hnf-header__container">
       <div className="hnf-header__logo">
-        <a href="/" className="hnf-link" aria-label="Logótipo hotels-app, ir para página inicial">
+        <a href="/" className="hnf-link" >
           <img src="/hotel-logo.ico" alt="hotels-app Logo" />
         </a>
       </div>

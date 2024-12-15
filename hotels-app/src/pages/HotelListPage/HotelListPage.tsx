@@ -7,6 +7,7 @@ import StatusMessage, {StatusTypes} from "../../components/StatusMessage/StatusM
 import NavBar from "../../components/NavBar/NavBar";
 import {Link, useNavigate} from "react-router-dom";
 import Button, {ButtonType} from "../../components/Button/Button";
+import HotelItem from "../../components/HotelItem/HotelItem";
 
 const HotelListPage: React.FC = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
@@ -51,19 +52,13 @@ const HotelListPage: React.FC = () => {
     <div className="hotel-list-page">
       <h1>Hotel List</h1>
       <ul>
-        {hotels.map((hotel) => (
-          <li key={hotel.id}>
-          <img src={hotel.image_srcs[0]} alt={hotel.name} />
-              <div className="hotel-info">
-                <h2>
-                  <Link to={`/hotel/${hotel.id}`}>{hotel.name}</Link>
-                </h2>
-                <p>{hotel.description}</p>
-              </div>
-          </li>
-        ))}
+        <ul>
+          {hotels.map((hotel) => (
+            <HotelItem key={hotel.id} hotel={hotel}/>
+          ))}
+        </ul>
       </ul>
-      <Button message={"Return"} handleAction={handleReturn} buttonStyle={ButtonType.Secondary} />
+      <Button message={"Return"} handleAction={handleReturn} buttonStyle={ButtonType.Secondary}/>
 
     </div>
     </div>

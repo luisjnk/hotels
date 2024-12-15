@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import NavBar from "../../components/NavBar/NavBar";
-import {fetchHotelsByScrape, postHotel} from "../../services/apiService";
-import StatusMessage, {StatusTypes} from "../../components/StatusMessage/StatusMessage";
+import { fetchHotelsByScrape, postHotel } from "../../services/apiService";
+import StatusMessage, { StatusTypes } from "../../components/StatusMessage/StatusMessage";
 import './HotelSearchPage.css';
 import Hotel from "../../types/Hotel";
 import Loading from "../../components/Loading/Loading";
 import HotelSearchContent from "../../components/HotelSearchContent/HotelSearchContent";
-import Button, {ButtonType} from "../../components/Button/Button";
-import {useNavigate} from "react-router-dom";
+import Button, { ButtonType } from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const emptyHotel: Hotel = {
   name: '',
@@ -21,7 +21,6 @@ const emptyHotel: Hotel = {
 };
 
 function HotelSearchPage() {
-
   const [status, setStatus] = useState(StatusTypes.NoStatus);
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");

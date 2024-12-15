@@ -1,0 +1,12 @@
+.hotel-info {
+    margin-left: 10px;
+}
+
+.hotel-info h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.hotel-info p {
+    margin: 5px 0;
+}
