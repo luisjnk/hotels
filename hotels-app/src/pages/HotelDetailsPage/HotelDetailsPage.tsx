@@ -5,7 +5,7 @@ import Hotel from '../../types/Hotel';
 import Loading from '../../components/Loading/Loading';
 import StatusMessage, { StatusTypes } from '../../components/StatusMessage/StatusMessage';
 import './HotelDetailsPage.css';
-import HotelSearchContent from "../../components/HotelSearchContent/HotelSearchContent";
+import HotelDetails from "../../components/HotelDetails/HotelDetails";
 import NavBar from "../../components/NavBar/NavBar";
 import Button, {ButtonType} from "../../components/Button/Button";
 
@@ -58,7 +58,7 @@ const HotelDetailsPage: React.FC = () => {
       <header className="hotel-search-header">
         <NavBar/>
       </header>
-      <HotelSearchContent hotel={hotel}/>
+      <HotelDetails hotel={hotel}/>
       <Button message={"Return"} handleAction={handleReturn} buttonStyle={ButtonType.Secondary} />
     </div>
   );

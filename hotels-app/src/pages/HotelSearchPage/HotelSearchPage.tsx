@@ -5,7 +5,7 @@ import StatusMessage, { StatusTypes } from "../../components/StatusMessage/Statu
 import './HotelSearchPage.css';
 import Hotel from "../../types/Hotel";
 import Loading from "../../components/Loading/Loading";
-import HotelSearchContent from "../../components/HotelSearchContent/HotelSearchContent";
+import HotelDetails from "../../components/HotelDetails/HotelDetails";
 import Button, { ButtonType } from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -78,7 +78,7 @@ function HotelSearchPage() {
       <div className="hotel-search-page-content">
         {isLoading && <Loading />}
         {StatusTypes.NoStatus !== status && <StatusMessage message={statusMessage} statusType={status}/>}
-        {!isLoading && status !== StatusTypes.Error && <HotelSearchContent hotel={hotel} handleAdd={handleAddHotel} />}
+        {!isLoading && status !== StatusTypes.Error && <HotelDetails hotel={hotel} handleAdd={handleAddHotel} />}
         <Button message={"Return"} handleAction={handleReturn} buttonStyle={ButtonType.Secondary} />
       </div>
     </div>
