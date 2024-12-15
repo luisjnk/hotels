@@ -3,3 +3,7 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+jest.mock('swiper/react');
+jest.mock('swiper/css');
+jest.mock('swiper/css/pagination');
+jest.mock('swiper/css/autoplay');

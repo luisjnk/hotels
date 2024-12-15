@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Hotel from '../../types/Hotel';
 import './HotelItem.css';
 
@@ -17,18 +17,28 @@ const HotelItem: React.FC<HotelItemProps> = ({ hotel }) => {
 
   return (
     <li key={hotel.id}>
-      <img src={hotel.image_srcs[0]} alt={hotel.name}/>
+      {hotel.image_srcs && hotel.image_srcs[0] && (
+        <img src={hotel.image_srcs[0]} alt={hotel.name} />
+      )}
       <div className="hotel-info">
-        <h2>
-          <Link to={`/hotel/${hotel.id}`}>{hotel.name}</Link>
-        </h2>
-        <p>
-          {truncateDescription(hotel.description, 500)}{' '}
-          <Link to={`/hotel/${hotel.id}`}>Read more</Link>
-        </p>
+        {hotel.name && (
+          <h2>
+            <Link to={`/hotel/${hotel.id}`}>{hotel.name}</Link>
+          </h2>
+        )}
+        {hotel.description && (
+          <p>
+            {truncateDescription(hotel.description, 500)}{' '}
+            <Link to={`/hotel/${hotel.id}`}>Read more</Link>
+          </p>
+        )}
         <div className="additional-info">
-          <p><strong>Average Price:</strong> ${hotel.average_price}</p>
-          <p><strong>Location:</strong> {hotel.location}</p>
+          {hotel.average_price && (
+            <p><strong>Average Price:</strong> ${hotel.average_price}</p>
+          )}
+          {hotel.location && (
+            <p><strong>Location:</strong> {hotel.location}</p>
+          )}
         </div>
       </div>
     </li>

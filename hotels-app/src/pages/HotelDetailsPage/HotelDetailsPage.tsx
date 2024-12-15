@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { fetchHotelById } from '../../services/apiService';
 import Hotel from '../../types/Hotel';
 import Loading from '../../components/Loading/Loading';
@@ -7,14 +7,12 @@ import StatusMessage, { StatusTypes } from '../../components/StatusMessage/Statu
 import './HotelDetailsPage.css';
 import HotelDetails from "../../components/HotelDetails/HotelDetails";
 import NavBar from "../../components/NavBar/NavBar";
-import Button, {ButtonType} from "../../components/Button/Button";
 
 const HotelDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [hotel, setHotel] = useState<Hotel | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const loadHotel = async () => {
