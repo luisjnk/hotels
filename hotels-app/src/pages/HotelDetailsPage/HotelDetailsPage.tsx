@@ -37,10 +37,6 @@ const HotelDetailsPage: React.FC = () => {
     loadHotel();
   }, [id]);
 
-  const handleReturn = () => {
-    navigate('/');
-  }
-
   if (isLoading) {
     return <Loading />;
   }
@@ -54,13 +50,15 @@ const HotelDetailsPage: React.FC = () => {
   }
 
   return (
-    <div className="hotel-details-page">
+    <>
       <header className="hotel-search-header">
         <NavBar/>
       </header>
-      <HotelDetails hotel={hotel}/>
-      <Button message={"Return"} handleAction={handleReturn} buttonStyle={ButtonType.Secondary} />
-    </div>
+      <div className="hotel-details-page">
+        <HotelDetails hotel={hotel}/>
+      </div>
+    </>
+
   );
 };
 

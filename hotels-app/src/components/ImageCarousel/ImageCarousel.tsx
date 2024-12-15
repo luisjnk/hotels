@@ -17,8 +17,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   return (
     <div className="image-carousel">
       <Swiper
-        spaceBetween={10}
-        slidesPerView={1}
+        spaceBetween={15}
+        slidesPerView={4}
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 2000, disableOnInteraction: false }}

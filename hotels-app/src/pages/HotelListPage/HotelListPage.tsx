@@ -5,15 +5,13 @@ import Loading from '../../components/Loading/Loading';
 import './HotelListPage.css';
 import StatusMessage, {StatusTypes} from "../../components/StatusMessage/StatusMessage";
 import NavBar from "../../components/NavBar/NavBar";
-import {Link, useNavigate} from "react-router-dom";
-import Button, {ButtonType} from "../../components/Button/Button";
 import HotelItem from "../../components/HotelItem/HotelItem";
+import NoHotels from "../../components/NoHotels/NoHotels";
 
 const HotelListPage: React.FC = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const loadHotels = async () => {
@@ -32,10 +30,6 @@ const HotelListPage: React.FC = () => {
     loadHotels();
   }, []);
 
-  const handleReturn = () => {
-    navigate('/');
-  }
-
   if (isLoading) {
     return <Loading />;
   }
@@ -50,16 +44,18 @@ const HotelListPage: React.FC = () => {
         <NavBar />
       </header>
     <div className="hotel-list-page">
-      <h1>Hotel List</h1>
-      <ul>
+      {hotels.length === 0 ? (
+        <NoHotels />
+      ) : (
         <ul>
-          {hotels.map((hotel) => (
-            <HotelItem key={hotel.id} hotel={hotel}/>
-          ))}
+          <ul>
+            {hotels.map((hotel) => (
+              <HotelItem key={hotel.id} hotel={hotel}/>
+            ))}
+          </ul>
         </ul>
-      </ul>
-      <Button message={"Return"} handleAction={handleReturn} buttonStyle={ButtonType.Secondary}/>
 
+      )}
     </div>
     </div>
   );

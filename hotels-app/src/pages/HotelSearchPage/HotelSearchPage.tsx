@@ -8,6 +8,7 @@ import Loading from "../../components/Loading/Loading";
 import HotelDetails from "../../components/HotelDetails/HotelDetails";
 import Button, { ButtonType } from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 const emptyHotel: Hotel = {
   name: '',
@@ -25,7 +26,6 @@ function HotelSearchPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [hotel, setHotel] = useState(emptyHotel);
-  const navigate = useNavigate();
 
   const handleApiCall = async (apiCall: () => Promise<any>, successStatus: StatusTypes, successMessage: string, errorMessage: string) => {
     try {
@@ -66,20 +66,16 @@ function HotelSearchPage() {
     console.log('Hotel posted successfully');
   };
 
-  const handleReturn = () => {
-    navigate('/');
-  }
-
   return (
     <div className="hotel-search-page">
-      <header className="hotel-search-header">
-        <NavBar handleSearchByName={handleSearchByName} disabled={isLoading} />
-      </header>
+      <div className="hotel-search-header">
+        <NavBar />
+        <Header handleSearchByName={handleSearchByName} disabled={isLoading}  />
+      </div>
       <div className="hotel-search-page-content">
         {isLoading && <Loading />}
         {StatusTypes.NoStatus !== status && <StatusMessage message={statusMessage} statusType={status}/>}
         {!isLoading && status !== StatusTypes.Error && <HotelDetails hotel={hotel} handleAdd={handleAddHotel} />}
-        <Button message={"Return"} handleAction={handleReturn} buttonStyle={ButtonType.Secondary} />
       </div>
     </div>
   );

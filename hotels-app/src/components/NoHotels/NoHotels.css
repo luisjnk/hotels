@@ -1,0 +1,25 @@
+.no-hotels {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.no-hotels p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px; /* Add some space below the phrase */
+}
+
+.no-hotels a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.no-hotels a:hover {
+    text-decoration: underline;
+}
