@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 import HotelListPage from '../pages/HotelListPage/HotelListPage';
-import { fetchHotels } from '../services/apiService';
-import { BrowserRouter } from 'react-router-dom';
+import {fetchHotels} from '../services/apiService';
+import {BrowserRouter} from 'react-router-dom';
 import Hotel from '../types/Hotel';
 
 jest.mock('../services/apiService');
@@ -39,9 +39,13 @@ describe('HotelListPage', () => {
     mockFetchHotels.mockResolvedValueOnce(hotels);
 
     render(
-        <BrowserRouter>
-          <HotelListPage />
-        </BrowserRouter>
+      <BrowserRouter future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+      >
+        <HotelListPage/>
+      </BrowserRouter>
     );
 
     await waitFor(() => {
@@ -55,9 +59,13 @@ describe('HotelListPage', () => {
     mockFetchHotels.mockResolvedValueOnce([]);
 
     render(
-        <BrowserRouter>
-          <HotelListPage />
-        </BrowserRouter>
+      <BrowserRouter future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+      >
+        <HotelListPage/>
+      </BrowserRouter>
     );
 
     await waitFor(() => {
@@ -69,9 +77,13 @@ describe('HotelListPage', () => {
     mockFetchHotels.mockRejectedValueOnce(new Error('Error fetching hotels'));
 
     render(
-        <BrowserRouter>
-          <HotelListPage />
-        </BrowserRouter>
+      <BrowserRouter future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+      >
+        <HotelListPage/>
+      </BrowserRouter>
     );
 
     await waitFor(() => {

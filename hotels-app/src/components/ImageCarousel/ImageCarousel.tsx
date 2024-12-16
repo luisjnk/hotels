@@ -6,7 +6,7 @@ import 'swiper/css/autoplay';
 import './ImageCarousel.css';
 import SwiperCore from 'swiper';
 import { Autoplay } from 'swiper/modules';
-// Install the autoplay module
+
 SwiperCore.use([Autoplay]);
 
 interface ImageCarouselProps {
