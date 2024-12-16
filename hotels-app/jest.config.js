@@ -1,5 +1,3 @@
-const esmModules = ['swiper', 'ssr-window', 'dom7'];
-
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'jest-environment-jsdom',
@@ -7,7 +5,7 @@ module.exports = {
         '^.+\\.(ts|tsx|js|jsx|mjs)$': 'babel-jest',
     },
     transformIgnorePatterns: [
-        `node_modules/(?!(?:.pnpm/)?(${esmModules.join('|')}))`,
+        "node_modules/(?!axios)"
     ],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'mjs'],
     moduleNameMapper: {
