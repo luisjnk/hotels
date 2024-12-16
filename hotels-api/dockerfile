@@ -1,12 +1,29 @@
+# Dockerfile for hotels-api
+
 FROM python:3.13-slim
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    xvfb \
+    && apt-get clean \
+
+# Set the working directory
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENV DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
+# Install Python dependencies
+RUN pip install playwright
 
+# Run playwright install to ensure all browsers are downloaded
+RUN playwright install --with-deps
+
+# Copy the rest of the application code
 COPY . .
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run the application
+CMD ["xvfb-run", "--server-args='-screen 0 1024x768x24'", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -7,4 +7,13 @@
     height: 300px; /* Set a fixed height */
     object-fit: cover; /* Ensure the image covers the area without distortion */
     border-radius: 8px; /* Optional: add rounded corners */
+    margin: 10px 0; /* Add margin above and below the images */
+}
+
+.image-slide {
+    padding: 0 10px; /* Adjust the value as needed */
+}
+
+.image-carousel .slick-slide > div {
+    margin: 0 10px
 }

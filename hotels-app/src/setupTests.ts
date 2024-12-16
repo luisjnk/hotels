@@ -3,7 +3,16 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
-jest.mock('swiper/react');
-jest.mock('swiper/css');
-jest.mock('swiper/css/pagination');
-jest.mock('swiper/css/autoplay');
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: (query: any) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  }),
+});

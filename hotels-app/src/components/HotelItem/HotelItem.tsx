@@ -33,9 +33,6 @@ const HotelItem: React.FC<HotelItemProps> = ({ hotel }) => {
           </p>
         )}
         <div className="additional-info">
-          {hotel.average_price && (
-            <p><strong>Average Price:</strong> ${hotel.average_price}</p>
-          )}
           {hotel.location && (
             <p><strong>Location:</strong> {hotel.location}</p>
           )}
